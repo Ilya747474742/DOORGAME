@@ -4,39 +4,52 @@ using UnityEngine;
 
 public class PlayerCjntrol : MonoBehaviour
 {
-    float speed = 5f;
-    Rigidbody2D rb;
-    bool FacingRigth = true;
-    int DerectionImput;
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();   
-    }
+    [SerializeField] private int speed;
+    [SerializeField] private int jump;
+    private bool Ground;
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private Rigidbody2D rb;
+    [SerializeField] private int direction;
+
+    private void Start()
     {
-        rb.velocity = new Vector2(speed * DerectionImput, speed * rb.velocity.y);
-        if (DerectionImput <0 && FacingRigth)
+       
+        rb = GetComponent<Rigidbody2D>();
+        transform.position = new Vector2(3, -1);
+    }
+    private void Update()
+    {
+        rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+        
+        Flip();
+    }
+    public void Jump()
+    {
+        if (Ground == true)
         {
-            Flip();
-        }
-        else if (DerectionImput > 0 && !FacingRigth)
-        {
-            Flip();
+            rb.AddForce(transform.up * jump, ForceMode2D.Impulse);
+            
         }
     }
-
-    public void Move(int InputAxis)
+    public void ChangeDirection(int buttonDirection)
     {
-        DerectionImput = InputAxis;
+        direction = buttonDirection;
     }
-
-    void Flip()
+    private void Flip()
     {
-        FacingRigth = !FacingRigth;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        if (direction < 0)
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+        else if (direction > 0)
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Ground")
+            Ground = true;
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Ground")
+            Ground = false;
     }
 }
