@@ -12,6 +12,11 @@ public class CharController : MonoBehaviour
     public bool groundCheck;
     public bool facingRight = true;
 
+    public bool Grounded = false;
+    public Transform GraundChek0;
+    public float GroudRadius = 0.2f;
+    public LayerMask wtfisgdound;
+
 
     void Start()
     {
@@ -22,6 +27,8 @@ public class CharController : MonoBehaviour
 
     void Update()
     {
+        Grounded = Physics2D.OverlapCircle(GraundChek0.position, GroudRadius, wtfisgdound);
+
         if ((directionInput < 0) && (facingRight))
         {
             Flip();
@@ -50,7 +57,7 @@ public class CharController : MonoBehaviour
     {
         isJump = groundCheck;
 
-        if (groundCheck)
+        if (groundCheck && Grounded)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
         }
