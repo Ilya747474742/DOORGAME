@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     public Rigidbody2D rb2d;
     public float playerSpeed;
     public float jumpPower;
