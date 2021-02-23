@@ -7,10 +7,6 @@ public class Click : MonoBehaviour
     public UnityEngine.UI.Text GoldDisplay;
     public float goldPerClick = 1;
     public float Gold = 0;
-    void Start()
-    {
-        
-    }
 
 
     void Update()
