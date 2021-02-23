@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class ClickMe : MonoBehaviour
 {
-    public GameObject gm;
+    public Click gm;
     public void Clickk()
     {
-
+        gm.Gold += gm.goldPerClick;
     }
 
 }
