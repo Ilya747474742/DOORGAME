@@ -9,8 +9,9 @@ public class Click : MonoBehaviour
     public float Gold = 0;
 
 
+
     void Update()
     {
-        GoldDisplay.text = "Gold: " + Gold;
+        GoldDisplay.text = "Gold: " + Gold + "$";
     }
 }
