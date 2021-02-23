@@ -8,6 +8,6 @@ public class Plus : MonoBehaviour
 
     public void Plus0() 
     {
-        gm.goldPerClick *= 2;
+        gm.goldPerClick += 2;
     } 
 }
