@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public UnityEngine.UI.Text GoldDisplay;
+    public float goldPerClick = 1;
+    public float Gold = 0;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        GoldDisplay.text = "Gold: " + Gold;
     }
 }
